@@ -91,7 +91,7 @@ TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/web/mapyou/'
+STATIC_ROOT = '/web/mapyou/static/'
 
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
