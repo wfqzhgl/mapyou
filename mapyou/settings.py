@@ -92,6 +92,9 @@ TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/web/mapyou/static/'
+STATICFILES_DIRS = (
+    '/work/src/cygwin64/home/wufaqing/git/mapyou/static',
+)
 
 LOGIN_URL = '/accounts/login/'
 LOGOUT_URL = '/accounts/logout/'
