@@ -36,7 +36,7 @@
     <!--</form>-->
 <!--</div>-->
 
-<div style="margin-top: 20px;">
+<div style="margin-top: 20px; display: none">
     <!—定位组件-->
     <lbs-geo id="geo" city="北京" enable-modified="false"></lbs-geo>
 </div>
@@ -57,37 +57,39 @@
     });
 </script>
 
-<div id="tabs" data-role="tabs">
-    <div data-role="navbar">
-        <ul>
-            <li><a href="#meishi" data-ajax="false">附近美食</a></li>
-            <li><a href="#jiudian" data-ajax="false">附近酒店</a></li>
-            <li><a href="#chezhan" data-ajax="false">附近车站</a></li>
-            <li><a href="#chaoshi" data-ajax="false">附近超市</a></li>
-            <li><a href="#jiayouzhan" data-ajax="false">附近加油站</a></li>
-        </ul>
-    </div>
+<div style="margin-top: 20px;">
+    <div style="padding-left: 5px;">附近查找：</div>
+    <div id="tabs" data-role="tabs">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#meishi" data-ajax="false" style="color: #0000ff">美食</a></li>
+                <li><a href="#jiudian" data-ajax="false" style="color: #0000ff">酒店</a></li>
+                <li><a href="#chaoshi" data-ajax="false" style="color: #0000ff">超市</a></li>
+                <li><a href="#jiayouzhan" data-ajax="false" style="color: #0000ff">加油站</a></li>
+                <li><a href="#chezhan" data-ajax="false" style="color: #0000ff">车站</a></li>
+            </ul>
+        </div>
 
-    <div id="meishi" class="ui-body-d ui-content" style="margin-top: 20px;">
-        <lbs-nearby query="美食" enable-geo="true" num="30" type="list" ></lbs-nearby>
-    </div>
+        <div id="meishi" class="ui-body-d ui-content" style="margin-top: 20px;">
+            <lbs-nearby query="美食" enable-geo="true" num="30" type="list" ></lbs-nearby>
+        </div>
 
-    <div id="jiudian" class="ui-body-d ui-content" style="margin-top: 20px;">
-        <lbs-nearby query="酒店 宾馆" enable-geo="true" num="30" type="list" ></lbs-nearby>
-    </div>
+        <div id="jiudian" class="ui-body-d ui-content" style="margin-top: 20px;">
+            <lbs-nearby query="酒店 宾馆" enable-geo="true" num="30" type="list" ></lbs-nearby>
+        </div>
 
-    <div id="chezhan" class="ui-body-d ui-content" style="margin-top: 20px;">
-        <lbs-nearby query="车站" enable-geo="true" num="30" type="list" ></lbs-nearby>
-    </div>
+        <div id="chaoshi" class="ui-body-d ui-content" style="margin-top: 20px;">
+            <lbs-nearby query="超市" enable-geo="true" num="30" type="list" ></lbs-nearby>
+        </div>
 
-    <div id="chaoshi" class="ui-body-d ui-content" style="margin-top: 20px;">
-        <lbs-nearby query="超市" enable-geo="true" num="30" type="list" ></lbs-nearby>
-    </div>
+        <div id="jiayouzhan" class="ui-body-d ui-content" style="margin-top: 20px;">
+            <lbs-nearby query="加油站" enable-geo="true" num="30" type="list" ></lbs-nearby>
+        </div>
 
-    <div id="jiayouzhan" class="ui-body-d ui-content" style="margin-top: 20px;">
-        <lbs-nearby query="加油站" enable-geo="true" num="30" type="list" ></lbs-nearby>
+        <div id="chezhan" class="ui-body-d ui-content" style="margin-top: 20px;">
+            <lbs-nearby query="车站" enable-geo="true" num="30" type="list" ></lbs-nearby>
+        </div>
     </div>
-
 </div>
 {% endblock %}
 

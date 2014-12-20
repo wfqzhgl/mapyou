@@ -54,7 +54,7 @@ if __name__ == "__main__":
     import logging
     from app.models import *
 
-    url = "http://datachart.500.com/ssq/history/newinc/history.php?limit=10000&sort=0"
+    url = "http://datachart.500.com/ssq/history/newinc/history.php?limit=1&sort=0"
     get_data(url)
 
 
