@@ -1,4 +1,4 @@
-#-*-coding:utf8-*-
+# -*-coding:utf8-*-
 from django.shortcuts import render
 import csv
 import os
@@ -24,9 +24,9 @@ from forms import *
 
 # Create your views here.
 
-@login_required
+# @login_required
 def index(request):
-    return HttpResponse('done')
+    return render_to_response('app/index.html', locals(), RequestContext(request))
 
 
 @csrf_protect

@@ -14,7 +14,7 @@ urlpatterns = patterns('',
                        (r'^accounts/login/$', login_custom),
                        (r'^accounts/logout/$', login_required(logout_custom)),
                        (r'^accounts/password_change/$', login_required(password_change)),
-                       (r'^$', login_custom),
-
+                       # (r'^$', login_custom),
+                       (r'^$', index),
                        url(r'^app/', include('app.urls', namespace='app')),
 )

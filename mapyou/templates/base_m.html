@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{% endblock %} | 图你网</title>
+
+    {% block css%}
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+
+    {% endblock %}
+
+    {% block js %}
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    {% endblock %}
+
+    <style>
+        .invalid {
+            background: red;
+            color: white;
+        }
+        .error {
+            color: red;
+        }
+        .note{
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+
+
+        });
+
+
+    </script>
+
+    {% block head_extra%} {%endblock %}
+
+</head>
+
+<body>
+        {% block content%} {% endblock %}
+</body>
+</html>

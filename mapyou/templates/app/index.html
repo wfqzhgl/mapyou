@@ -1,0 +1,93 @@
+{% extends "base_m.html" %}
+
+{% block head_extra%}
+<script src="http://api.map.baidu.com/components?ak=jpA7xxRwPj8O1AvXzweGUEBb&v=1.0"></script>
+
+<script type="text/javascript">
+    function get_auth_msg(){
+//        jQuery.post('/plat/getmsg/{{p}}/', {phone:$("#txt_phone").val()}, function (data) {
+//            res = JSON.parse(data);
+//            if(res.code == 0){
+//                $("#id_note").html("(验证码已发送，请查收。)");
+//            }else{
+//                 $("#id_note").html("(失败:"+msg+")");
+//            }
+//        })
+
+    }
+
+
+</script>
+{%endblock %}
+
+
+{% block content%}
+<div>
+    <!-- 天气组件-->
+    <lbs-weather  enable-geo="true"></lbs-weather>
+</div>
+
+
+<!--<div style="width: 90%;padding: 30px;">-->
+    <!--<form id="id_form" method="post" data-ajax="false">-->
+        <!--<label for="txt_phone">请输入手机号码：</label>-->
+        <!--<input name="txt_phone" id="txt_phone" value="{{phone}}" type="text" data-clear-btn="true" required>-->
+        <!--<input type="button" class="ui-btn" onclick="get_auth_msg()"  value="获取验证码"/>-->
+    <!--</form>-->
+<!--</div>-->
+
+<div style="margin-top: 20px;">
+    <!—定位组件-->
+    <lbs-geo id="geo" city="北京" enable-modified="false"></lbs-geo>
+</div>
+<script>
+    // 先获取元素
+    var lbsGeo = document.getElementById('geo');
+    //监听定位失败事件 geofail
+    lbsGeo.addEventListener("geofail",function(evt){
+
+    });
+    //监听定位成功事件 geosuccess
+    lbsGeo.addEventListener("geosuccess",function(evt){
+            console.log(evt.detail);
+            var address = evt.detail.address;
+            var coords = evt.detail.coords;
+            var x = coords.lng;
+            var y = coords.lat;
+    });
+</script>
+
+<div id="tabs" data-role="tabs">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="#meishi" data-ajax="false">附近美食</a></li>
+            <li><a href="#jiudian" data-ajax="false">附近酒店</a></li>
+            <li><a href="#chezhan" data-ajax="false">附近车站</a></li>
+            <li><a href="#chaoshi" data-ajax="false">附近超市</a></li>
+            <li><a href="#jiayouzhan" data-ajax="false">附近加油站</a></li>
+        </ul>
+    </div>
+
+    <div id="meishi" class="ui-body-d ui-content" style="margin-top: 20px;">
+        <lbs-nearby query="美食" enable-geo="true" num="30" type="list" ></lbs-nearby>
+    </div>
+
+    <div id="jiudian" class="ui-body-d ui-content" style="margin-top: 20px;">
+        <lbs-nearby query="酒店 宾馆" enable-geo="true" num="30" type="list" ></lbs-nearby>
+    </div>
+
+    <div id="chezhan" class="ui-body-d ui-content" style="margin-top: 20px;">
+        <lbs-nearby query="车站" enable-geo="true" num="30" type="list" ></lbs-nearby>
+    </div>
+
+    <div id="chaoshi" class="ui-body-d ui-content" style="margin-top: 20px;">
+        <lbs-nearby query="超市" enable-geo="true" num="30" type="list" ></lbs-nearby>
+    </div>
+
+    <div id="jiayouzhan" class="ui-body-d ui-content" style="margin-top: 20px;">
+        <lbs-nearby query="加油站" enable-geo="true" num="30" type="list" ></lbs-nearby>
+    </div>
+
+</div>
+{% endblock %}
+
