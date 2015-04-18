@@ -17,4 +17,6 @@ urlpatterns = patterns('',
                        # (r'^$', login_custom),
                        (r'^$', index),
                        url(r'^app/', include('app.urls', namespace='app')),
+                       
+                       url(r'^bingli/', include('bingli.urls', namespace='bingli')),
 )

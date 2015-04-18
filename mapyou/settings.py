@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     'gunicorn',
+    'bingli'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,7 +75,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ZH-cn'
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Shanghai'
@@ -89,11 +90,15 @@ TIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/web/mapyou/static/'
+# STATIC_ROOT = '/home/faqingw/work/src/workspace/mapyou/static/'
 STATICFILES_DIRS = (
-    '/work/src/cygwin64/home/wufaqing/git/mapyou/static',
+    '/home/faqingw/work/src/workspace/mapyou/static',
 )
 
 LOGIN_URL = '/accounts/login/'
@@ -134,3 +139,5 @@ LOGGING = {
         }
     }
 }
+
+DEFAULT_NUM_PER_PAGE = 30

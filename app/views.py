@@ -31,11 +31,14 @@ def index(request):
 
 @csrf_protect
 def login_custom(request):
-    redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
+    print request.REQUEST
+    redirect_to = request.GET.get(REDIRECT_FIELD_NAME, '')
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
+            print 'redirect_to=', redirect_to
             netloc = urlparse.urlparse(redirect_to)[1]
+            print 'netloc=', netloc
             # Use default setting if redirect_to is empty
             if not redirect_to:
                 redirect_to = settings.LOGIN_REDIRECT_URL
@@ -46,7 +49,7 @@ def login_custom(request):
             auth_login(request, form.get_user())
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
-
+            print 'redirect_to=', redirect_to
             return HttpResponseRedirect(redirect_to)
     else:
         if request.user.is_authenticated():

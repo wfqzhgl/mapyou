@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}新增疾病{% endblock %}
+
+
+{% block head_extra%}
+
+<script>
+
+$(document).ready(function(){
+	
+});
+
+</script>
+
+{%endblock %}
+
+
+{% block nav_list%} 
+	<li class="active"><a href="/bingli/index/">患者列表</a></li>
+	<li><a href="/bingli/btypes/">疾病列表</a></li>
+	<li><a href="/bingli/bcates/">疾病类别</a></li>
+{% endblock %}
+
+
+
+{% block content%}
+	<form enctype="multipart/form-data" action="/bingli/addpatient/" method="post"  class="ym-form">{% csrf_token %}
+	
+	<h4>新建-患者</h4><br>
+	
+	<div class="ym-fbox-text">
+		<label for="name">姓名</label>
+		{{form.name}}
+		<font color='red'>{{form.name.errors}}</font>
+	</div>
+
+	<div class="ym-fbox-text">
+		<label for="gender">性别</label>
+		{{form.gender}}
+		<font color='red'>{{form.gender.errors}}</font>
+	</div>
+	
+	<div class="ym-fbox-text">
+		<label for="age">年龄</label>
+		{{form.age}}
+		<font color='red'>{{form.age.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="address">地址</label>
+		{{form.address}}
+		<font color='red'>{{form.address.errors}}</font>
+	</div>
+		<div class="ym-fbox-text">
+		<label for="phone">电话</label>
+		{{form.phone}}
+		<font color='red'>{{form.phone.errors}}</font>
+	</div>
+		<div class="ym-fbox-text">
+		<label for="ID_num">身份证(选填)</label>
+		{{form.ID_num}}
+		<font color='red'>{{form.ID_num.errors}}</font>
+	</div>
+			
+	<div class="ym-fbox-button">
+ 		<input type="submit" class="ym-button" value="保存" id="submit" name="submit" />
+ 		<input type="button" class="ym-button" value="返回" onclick="javascript:location.href='/bingli/index/'" />
+ 	</div>
+	
+	</form>
+
+ 
+{% endblock %}

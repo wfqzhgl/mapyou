@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}新增病历{% endblock %}
+
+
+{% block head_extra%}
+
+<script>
+
+$(document).ready(function(){
+       	 $( "#id_date" ).datepicker({
+		// defaultDate: "+1w",
+         maxDate:'0d',
+		 dateFormat:"yy-mm-dd",
+		 changeMonth: true,
+		 numberOfMonths: 1,
+         firstDay: 1,
+		 onClose: function( selectedDate ) {
+		 //$( "#stat_end" ).datepicker( "option", "minDate", selectedDate );
+		 }
+		 });
+	
+});
+
+</script>
+
+{%endblock %}
+
+
+{% block nav_list%} 
+	<li class="active"><a href="/bingli/index/">患者列表</a></li>
+	<li><a href="/bingli/btypes/">疾病列表</a></li>
+	<li><a href="/bingli/bcates/">疾病类别</a></li>
+{% endblock %}
+
+
+
+{% block content%}
+	<form enctype="multipart/form-data" action="/bingli/addhis/{{uid}}/" method="post"  class="ym-form">{% csrf_token %}
+	
+	<h4>新建-病历</h4><br>
+	
+	<div class="ym-fbox-text">
+		<label for="date">日期</label>
+		{{form.date}}
+		<font color='red'>{{form.date.errors}}</font>
+	</div>
+	
+	<div class="ym-fbox-text">
+		<label for="patient">患者</label>
+		{{form.patient}}
+		<font color='red'>{{form.patient.errors}}</font>
+	</div>
+
+	<div class="ym-fbox-text">
+		<label for="btype">所属疾病</label>
+		{{form.btype}}
+		<font color='red'>{{form.btype.errors}}</font>
+	</div>
+	
+	<div class="ym-fbox-text">
+		<label for="his_desc">既往史</label>
+		{{form.his_desc}}
+		<font color='red'>{{form.his_desc.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="zhy_desc">中医诊断</label>
+		{{form.zhy_desc}}
+		<font color='red'>{{form.zhy_desc.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="xy_desc">西医诊断</label>
+		{{form.xy_desc}}
+		<font color='red'>{{form.xy_desc.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="xy_img">西医检资料</label>
+		{{form.xy_img}}
+		<font color='red'>{{form.xy_img.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="diagnosis">结论</label>
+		{{form.diagnosis}}
+		<font color='red'>{{form.diagnosis.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="prescription">处方用药</label>
+		{{form.prescription}}
+		<font color='red'>{{form.prescription.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="other_desc">备注</label>
+		{{form.other_desc}}
+		<font color='red'>{{form.other_desc.errors}}</font>
+	</div>
+	<div class="ym-fbox-button">
+ 		<input type="submit" class="ym-button" value="保存" id="submit" name="submit" />
+ 		<input type="button" class="ym-button" value="返回" onclick="javascript:location.href='/bingli/histories/{{uid}}/'" />
+ 	</div>
+	
+	</form>
+
+ 
+{% endblock %}

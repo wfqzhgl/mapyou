@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+
+{% block head_extra%}
+
+<script>
+
+$(document).ready(function(){
+	
+});
+
+</script>
+
+{%endblock %}
+
+
+{% block nav_list%} 
+	<li class="active"><a href="/bingli/index/">患者列表</a></li>
+	<li><a href="/bingli/btypes/">疾病列表</a></li>
+	<li><a href="/bingli/bcates/">疾病类别</a></li>
+{% endblock %}
+
+
+{% block content%}
+    <div>
+    患者姓名:{{patient.name}}
+    </div>
+    
+    <div class="ym-fbox-button">
+    	<input type="button" class="ym-button" value="新增" onclick="javascript:location.href='/bingli/addhis/{{patient.id}}/'" />
+    </div>
+    
+    <table id="table_btype_list" style="width:100%"> 
+	    <thead> 
+	    <tr> 
+	    	<th style="text-align:left;">日期</th>
+	        <th style="text-align:left;">中医诊断</th> 
+	        <th style="text-align:left;">西医诊断</th> 
+	        <th style="text-align:left;">结论</th>
+	        <th style="text-align:left;">所属病</th>
+	        <th style="text-align:left;">操作</th> 
+	    </tr> 
+	    </thead> 
+	    <tbody> 
+	    {% for object in page_obj.object_list %}
+	    <tr> 
+	        <td>{{object.date}}</td> 
+	        <td>{{ object.zhy_desc }}</td>
+	        <td>{{ object.xy_desc }}</td> 
+	        <td>{{ object.diagnosis }}</td> 
+	        <td>{{ object.btype.name }}</td> 
+	        <td><a target="_blank" href="/admin/bingli/bhistory/{{object.id}}/">详细信息 </a></td> 
+	        
+	        
+	    </tr> 
+	    {% endfor %}
+	    </tbody> 
+    </table>  
+    
+    <!-- 分页控件 -->
+		 <div id="pager" style="text-align:right">
+	       
+	       <!-- {%if page_obj%} -->
+	       	<!--	<strong>{{page_obj.start_index}}&nbsp;-&nbsp;{{page_obj.end_index}}&nbsp;&nbsp;of&nbsp;&nbsp;{{page_obj.paginator.count}}</strong> -->
+	       	<!--	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	      <!-- {%endif%} -->
+	       {% if page_obj.has_previous %}
+	        <a href="#" onclick="get_page(1)">首页</a>
+	        <a href="#" onclick="get_page({{page_obj.previous_page_number}})">上一页</a>
+	       {% endif %}
+	       
+	       {% if page_obj %}
+	       	第{{page_obj.number}}页&nbsp;共{{ page_obj.paginator.num_pages }}页      
+	       	{% endif %}
+	       
+	       {% if page_obj.has_next %}
+	        <a href="#" onclick="get_page({{page_obj.next_page_number}})">下一页</a>
+	        <a href="#" onclick="get_page({{page_obj.paginator.num_pages}})">末页</a>
+	       {% endif %}
+	       
+	       	&nbsp;&nbsp;&nbsp;页号 
+	       	<select id="page_select" onChange="get_page_selected()">
+		       	{%for pagenum in page_obj.paginator.page_range%}
+		       		{%ifequal page_obj.number pagenum%}
+		       		<option selected="selected">{{pagenum}}</option>
+		       		{%else%}
+		       		<option>{{pagenum}}</option>
+		       		{%endifequal%}
+		       	{%endfor%}
+	       	</select>
+	  	</div>
+{% endblock %}

@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/plugins/base.css" rel="stylesheet" type="text/css" />
+<!--[if lte IE 7]>
+	<link href="/static/plugins/yaml402/yaml/core/iehacks.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+	
+<title>{% block title %}{% endblock %} | 病历管理系统</title>
+
+{% block css%} 
+<link type="text/css" rel="stylesheet" href="/static/plugins/jquery-ui-1.10.4/css/flick/jquery-ui-1.10.4.custom.min.css" />
+{% endblock %} 
+
+{% block js %}
+<script type="text/javascript" src="/static/plugins/jquery-ui-1.10.4/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="/static/plugins/jquery-ui-1.10.4/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+{% endblock %}
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function() {
+		
+		   	$("#load_div").dialog({
+   			autoOpen:false,
+   			modal:true,
+   			width:150,
+   			height:100,
+   			draggable: false,
+   			resizable: false,
+   			title:'请稍候...',
+
+   		});
+
+		//$("input").button();
+	});
+	
+
+	//get page object
+	function get_page(page,type){
+		query_page(page,type);
+	}
+	function get_page_selected(type){
+		if(jQuery('#page_select option:selected').length>0){
+			page=jQuery('#page_select option:selected')[0].value;
+			query_page(page,type);
+		}
+	}
+	
+	
+	
+	function i_getCookie(c_name) {
+		var start = document.cookie.indexOf(c_name+"=");
+		if (start ==-1) {return "";}
+		start = start+c_name.length+1;
+		var end = document.cookie.indexOf(";",start);
+		if (end==-1) {end = document.cookie.length;}
+		return decodeURIComponent(document.cookie.substring(start,end));
+	};
+
+</script>
+
+{% block head_extra%} {%endblock %}
+
+</head>
+
+<body>
+
+	<ul class="ym-skiplinks">
+		<li><a class="ym-skip" href="#nav">Skip to navigation (Press
+				Enter)</a></li>
+		<li><a class="ym-skip" href="#main">Skip to main content
+				(Press Enter)</a></li>
+	</ul>
+
+
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<header>
+					<h2>病历管理系统</h2>
+					{% if request.user %}
+						<div style="float:right;font-size:0.8em;">你好，{{ request.user.username}}.<a target="_blank" href="/accounts/password_change/">修改密码</a><a href="/accounts/logout/?next=/"> 退出</a></div>
+					{% endif %}
+			</header>
+
+			<nav id="nav">
+				<div class="ym-wrapper">
+					<div class="ym-hlist">
+						<ul>
+						{% block nav_list %} 
+							<li class="active"><a href="/traffic/index/">数据查询</a></li>
+						{% endblock %}
+						
+						{% block nav_auth %} 
+							{% if request.user.is_staff %}
+								<li><a href="/admin/" target="_blank">后台管理</a></li>
+							{% endif %}
+						{% endblock %}
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div id="main">
+				<div class="ym-column linearize-level-1">
+				
+				{% block content%} {% endblock %}
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="preview_dialog" >
+		
+	</div>
+
+    <div id="load_div" style="text-align:center;vertical-align:middle;">
+        <div><img src="/static/static/images/load.gif" ></div>
+    </div>
+
+	<footer>
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<p>
+				© Faqing 2015 – Layout based on <a href="http://www.yaml.de">YAML</a>
+			</p>
+		</div>
+	</div>
+	</footer>
+
+
+	<!-- full skip link functionality in webkit browsers -->
+	<script src="/static/plugins/yaml402/yaml/core/js/yaml-focusfix.js"></script>
+
+</body>
+</html>
