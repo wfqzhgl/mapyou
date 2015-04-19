@@ -72,7 +72,7 @@ class BHistory(models.Model):
     his_desc = models.TextField("既往史", max_length=100, blank=True, null=True)
     zhy_desc = models.TextField("中医诊断", max_length=100, blank=True, null=True)
     xy_desc = models.TextField("西医诊断", max_length=100, blank=True, null=True)
-    xy_img = models.FileField("西医检资料", upload_to='media_file', help_text='', blank=True, null=True)
+    xy_img = models.FileField("西医检资料", upload_to='.', help_text='', blank=True, null=True)
     diagnosis = models.TextField("结论", max_length=200, blank=True, null=True)
     prescription = models.TextField("处方用药", max_length=300, blank=True, null=True)
     other_desc = models.CharField("备注", max_length=200, blank=True, null=True)

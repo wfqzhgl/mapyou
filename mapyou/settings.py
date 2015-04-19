@@ -94,6 +94,8 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
+MEDIA_URL = 'http://mapyou.cn/media/'
+# MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = '/home/faqingw/work/src/workspace/mapyou/static/'

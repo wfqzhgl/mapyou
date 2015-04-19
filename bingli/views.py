@@ -181,8 +181,87 @@ class BcateCreate(CreateView):
 #             self.object.save()
 #         return super(BcateCreate, self).form_valid(form)
     success_url = "/bingli/bcates/"
+
+
+class BcateUpdate(UpdateView):
+    model = BCategory
+    template_name_suffix = "_update_form"
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(BcateUpdate, self).get_context_data(**kwargs)
+        context['request'] = self.request
+        return context
+    def get_success_url(self):
+        """
+        Returns the supplied URL.
+        """
+#         pk = self.kwargs.get('pk', '0')
+        return "/bingli/bcates/"
     
     
+class BtypeUpdate(UpdateView):
+    model = BType
+    template_name_suffix = "_update_form"
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(BtypeUpdate, self).get_context_data(**kwargs)
+        context['request'] = self.request
+        return context
+    def get_success_url(self):
+        """
+        Returns the supplied URL.
+        """
+#         pk = self.kwargs.get('pk', '0')
+        return "/bingli/btypes/"
+    
+class PatientUpdate(UpdateView):
+    model = Patient
+    template_name_suffix = "_update_form"
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(PatientUpdate, self).get_context_data(**kwargs)
+        context['request'] = self.request
+        return context
+    def get_success_url(self):
+        """
+        Returns the supplied URL.
+        """
+#         pk = self.kwargs.get('pk', '0')
+        return "/bingli/index/"
+    
+    
+class BHistoryUpdate(UpdateView):
+    model = BHistory
+    template_name_suffix = "_update_form"
+    def get_context_data(self, **kwargs):
+        uid = self.kwargs.get('uid', '0')
+        # Call the base implementation first to get a context
+        context = super(BHistoryUpdate, self).get_context_data(**kwargs)
+        context['request'] = self.request
+        context['uid'] = uid
+        return context
+    def get_success_url(self):
+        """
+        Returns the supplied URL.
+        """
+        pk = self.kwargs.get('pk', '0')
+        return "/bingli/histories/%s/" % BHistory.objects.get(id=pk).patient.id
+#    success_url=""
+#     def form_valid(self, form):
+#         self.object = form.save()
+#         
+#         if 'intro_pic' in self.request.FILES:
+#             file=self.request.FILES['intro_pic']
+#             filename=gen_file_name(file)  #生成文件 
+#             handle_uploaded_file(os.path.join(settings.MEDIA_ROOT,filename),file)
+# #            saveurl=re.sub(r'\\','/',os.path.join(settings.MEDIA_URL,filename))
+#             saveurl='/media/'+filename
+#             self.object.intro_pic=saveurl
+#             self.object.intro_pic_cdn=get_cdn_url(settings.MEDIA_URL+saveurl)
+#             self.object.save()
+#         return super(BHistoryUpdate, self).form_valid(form)
+    
+        
 class BcateView(ListView):
     def get_paginate_by(self, queryset):
         """

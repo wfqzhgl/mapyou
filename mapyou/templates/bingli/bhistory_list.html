@@ -17,7 +17,8 @@ $(document).ready(function(){
 
 
 {% block nav_list%} 
-	<li class="active"><a href="/bingli/index/">患者列表</a></li>
+	<li><a href="/bingli/index/">患者列表</a></li>
+	<li class="active"><a href="/bingli/histories/0/">病历列表</a></li>
 	<li><a href="/bingli/btypes/">疾病列表</a></li>
 	<li><a href="/bingli/bcates/">疾病类别</a></li>
 {% endblock %}
@@ -36,6 +37,7 @@ $(document).ready(function(){
 	    <thead> 
 	    <tr> 
 	    	<th style="text-align:left;">日期</th>
+	    	<th style="text-align:left;">患者姓名</th>
 	        <th style="text-align:left;">中医诊断</th> 
 	        <th style="text-align:left;">西医诊断</th> 
 	        <th style="text-align:left;">结论</th>
@@ -47,11 +49,12 @@ $(document).ready(function(){
 	    {% for object in page_obj.object_list %}
 	    <tr> 
 	        <td>{{object.date}}</td> 
+	        <td>{{object.patient.name}}</td> 
 	        <td>{{ object.zhy_desc }}</td>
 	        <td>{{ object.xy_desc }}</td> 
 	        <td>{{ object.diagnosis }}</td> 
 	        <td>{{ object.btype.name }}</td> 
-	        <td><a target="_blank" href="/admin/bingli/bhistory/{{object.id}}/">详细信息 </a></td> 
+	        <td><a target="_blank" href="/bingli/modhis/{{object.id}}/">详细信息 </a></td> 
 	        
 	        
 	    </tr> 

@@ -17,4 +17,8 @@ urlpatterns = patterns('mgr.views',
                        url(r'^addpatient[/]?/',login_required(PatientCreate.as_view()),name='add_patient'),
                        url(r'^addhis/(?P<uid>\d+)[/]?$',login_required(BHistoryCreate.as_view()),name='add_bhistory'),
                        
+                       url(r'^modhis/(?P<pk>\d+)[/]?$',login_required(BHistoryUpdate.as_view()),name='mod_bhistory'),
+                       url(r'^modpatient/(?P<pk>\d+)[/]?$',login_required(PatientUpdate.as_view()),name='mod_patient'),
+                       url(r'^modbtype/(?P<pk>\d+)[/]?$',login_required(BtypeUpdate.as_view()),name='mod_btype'),
+                       url(r'^modbcate/(?P<pk>\d+)[/]?$',login_required(BcateUpdate.as_view()),name='mod_bcate'),
                        )

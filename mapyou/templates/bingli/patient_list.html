@@ -18,6 +18,7 @@ $(document).ready(function(){
 
 {% block nav_list%} 
 	<li class="active"><a href="/bingli/index/">患者列表</a></li>
+	<li><a href="/bingli/histories/0/">病历列表</a></li>
 	<li><a href="/bingli/btypes/">疾病列表</a></li>
 	<li><a href="/bingli/bcates/">疾病类别</a></li>
 {% endblock %}
@@ -47,7 +48,7 @@ $(document).ready(function(){
 	        <td>{{ object.age }}</td> 
 	        <td>{{ object.phone }}</td> 
 	        <td>
-	        	<a target="_blank" href="/admin/bingli/patient/{{object.id}}/">修改 </a>
+	        	<a target="_blank" href="/bingli/modpatient/{{object.id}}/">查看/修改 </a>
 	        	<a target="_blank" href="/bingli/histories/{{object.id}}/">病历 </a>
 	        </td> 
 	        

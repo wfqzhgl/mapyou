@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}新增疾病类别{% endblock %}
+{% block title %}查看/修改疾病{% endblock %}
 
 
 {% block head_extra%}
@@ -20,16 +20,16 @@ $(document).ready(function(){
 {% block nav_list%} 
 	<li><a href="/bingli/index/">患者列表</a></li>
 	<li><a href="/bingli/histories/0/">病历列表</a></li>
-	<li><a href="/bingli/btypes/">疾病列表</a></li>
-	<li class="active"><a href="/bingli/bcates/">疾病类别</a></li>
+	<li class="active"><a href="/bingli/btypes/">疾病列表</a></li>
+	<li><a href="/bingli/bcates/">疾病类别</a></li>
 {% endblock %}
 
 
 
 {% block content%}
-	<form enctype="multipart/form-data" action="/bingli/addbcate/" method="post"  class="ym-form">{% csrf_token %}
+	<form enctype="multipart/form-data" action="/bingli/modbtype/{{object.id}}/" method="post"  class="ym-form">{% csrf_token %}
 	
-	<h4>新建-疾病类别</h4><br>
+	<h4>查看/修改-疾病</h4><br>
 	
 	<div class="ym-fbox-text">
 		<label for="name">名称</label>
@@ -38,6 +38,12 @@ $(document).ready(function(){
 	</div>
 
 	<div class="ym-fbox-text">
+		<label for="category">所属分类</label>
+		{{form.category}}
+		<font color='red'>{{form.category.errors}}</font>
+	</div>
+	
+	<div class="ym-fbox-text">
 		<label for="name">描述</label>
 		{{form.desc}}
 		<font color='red'>{{form.desc.errors}}</font>
@@ -45,7 +51,7 @@ $(document).ready(function(){
 					
 	<div class="ym-fbox-button">
  		<input type="submit" class="ym-button" value="保存" id="submit" name="submit" />
- 		<input type="button" class="ym-button" value="返回" onclick="javascript:location.href='/bingli/bcates/'" />
+ 		<input type="button" class="ym-button" value="返回" onclick="javascript:location.href='/bingli/btypes/'" />
  	</div>
 	
 	</form>

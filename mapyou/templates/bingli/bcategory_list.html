@@ -18,6 +18,7 @@ $(document).ready(function(){
 
 {% block nav_list%} 
 	<li><a href="/bingli/index/">患者列表</a></li>
+	<li><a href="/bingli/histories/0/">病历列表</a></li>
 	<li><a href="/bingli/btypes/">疾病列表</a></li>
 	<li class="active"><a href="/bingli/bcates/">疾病类别</a></li>
 {% endblock %}
@@ -42,7 +43,7 @@ $(document).ready(function(){
 	    <tr> 
 	        <td>{{ object.name }}</td>
 	        <td>{{ object.desc }}</td> 
-	        <td><a target="_blank" href="/admin/bingli/bcategory/{{object.id}}/">修改 </a></td> 
+	        <td><a target="_blank" href="/bingli/modbcate/{{object.id}}/">查看/修改 </a></td> 
 	        
 	        
 	    </tr> 

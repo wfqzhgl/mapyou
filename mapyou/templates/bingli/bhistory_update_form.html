@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}新增病历{% endblock %}
+{% block title %}查看/更新病历{% endblock %}
 
 
 {% block head_extra%}
@@ -38,9 +38,9 @@ $(document).ready(function(){
 
 
 {% block content%}
-	<form enctype="multipart/form-data" action="/bingli/addhis/{{uid}}/" method="post"  class="ym-form">{% csrf_token %}
+	<form enctype="multipart/form-data" action="/bingli/modhis/{{object.id}}/" method="post"  class="ym-form">{% csrf_token %}
 	
-	<h4>新建-病历</h4><br>
+	<h4>查看/更新-病历</h4><br>
 	
 	<div class="ym-fbox-text">
 		<label for="date">日期</label>
@@ -97,7 +97,7 @@ $(document).ready(function(){
 	</div>
 	<div class="ym-fbox-button">
  		<input type="submit" class="ym-button" value="保存" id="submit" name="submit" />
- 		<input type="button" class="ym-button" value="返回" onclick="javascript:location.href='/bingli/histories/{{uid}}/'" />
+ 		<input type="button" class="ym-button" value="返回" onclick="javascript:location.href='/bingli/histories/{{object.patient.id}}/'" />
  	</div>
 	
 	</form>

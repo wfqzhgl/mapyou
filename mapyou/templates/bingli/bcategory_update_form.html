@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}新增疾病类别{% endblock %}
+{% block title %}查看/修改疾病类别{% endblock %}
 
 
 {% block head_extra%}
@@ -27,9 +27,9 @@ $(document).ready(function(){
 
 
 {% block content%}
-	<form enctype="multipart/form-data" action="/bingli/addbcate/" method="post"  class="ym-form">{% csrf_token %}
+	<form enctype="multipart/form-data" action="/bingli/modbcate/{{object.id}}/" method="post"  class="ym-form">{% csrf_token %}
 	
-	<h4>新建-疾病类别</h4><br>
+	<h4>查看/修改-疾病类别</h4><br>
 	
 	<div class="ym-fbox-text">
 		<label for="name">名称</label>
