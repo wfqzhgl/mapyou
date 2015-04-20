@@ -96,6 +96,7 @@ class BHistoryView(ListView):
         context = super(BHistoryView, self).get_context_data(**kwargs)
         context['request'] = self.request
         uid = self.kwargs.get('uid', '0')
+        context['uid'] = uid
         if uid and uid != '0':
             context['patient'] = Patient.objects.get(id=uid)
         return context
@@ -128,9 +129,10 @@ class BHistoryCreate(CreateView):
 
     def get_form_kwargs(self):
         uid = self.kwargs.get('uid', '0')
-        patient = Patient.objects.get(id=uid)
-        kwargs = super(BHistoryCreate, self).get_form_kwargs()
-        kwargs['initial'].update({'patient':patient})
+        if uid and uid != '0':
+            patient = Patient.objects.get(id=uid)
+            kwargs = super(BHistoryCreate, self).get_form_kwargs()
+            kwargs['initial'].update({'patient':patient})
         return kwargs
         
     def get_context_data(self, **kwargs):
