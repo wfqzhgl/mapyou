@@ -128,10 +128,10 @@ class BHistoryCreate(CreateView):
     template_name_suffix = "_create_form"
 
     def get_form_kwargs(self):
+        kwargs = super(BHistoryCreate, self).get_form_kwargs()
         uid = self.kwargs.get('uid', '0')
         if uid and uid != '0':
             patient = Patient.objects.get(id=uid)
-            kwargs = super(BHistoryCreate, self).get_form_kwargs()
             kwargs['initial'].update({'patient':patient})
         return kwargs
         
