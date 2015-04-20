@@ -61,9 +61,24 @@ $(document).ready(function(){
 	</div>
 	
 	<div class="ym-fbox-text">
+		<label for="self_desc">主诉</label>
+		{{form.self_desc}}
+		<font color='red'>{{form.self_desc.errors}}</font>
+	</div>
+		<div class="ym-fbox-text">
+		<label for="now_desc">现病史</label>
+		{{form.now_desc}}
+		<font color='red'>{{form.now_desc.errors}}</font>
+	</div>	
+	<div class="ym-fbox-text">
 		<label for="his_desc">既往史</label>
 		{{form.his_desc}}
 		<font color='red'>{{form.his_desc.errors}}</font>
+	</div>
+	<div class="ym-fbox-text">
+		<label for="fam_desc">家族史</label>
+		{{form.fam_desc}}
+		<font color='red'>{{form.fam_desc.errors}}</font>
 	</div>
 	<div class="ym-fbox-text">
 		<label for="zhy_desc">中医诊断</label>
