@@ -14,3 +14,4 @@ sftp-config.json
 ./static/admin/*
 .idea/*
 ./static/plugins/jquery.jqGrid-4.6.0/src/*
+media

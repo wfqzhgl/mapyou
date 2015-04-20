@@ -315,7 +315,42 @@ class BtypeView(ListView):
     queryset = BType.objects.all().order_by('-id')
 #    template_name = "collect/gest_list.html"
 
+@login_required
+def search_patient(request):
+    """搜索患者
 
+    """
+    if request.method == "POST":
+        name = request.REQUEST.get('search_patient_name', '').strip()
+        gender = request.REQUEST.get('search_patient_gender', '').strip()
+        page_obj, total_rows = get_patient_search(request, name, gender)
+        return render_to_response('bingli/patient_search.html',
+                                  locals(),
+                                  RequestContext(request))
+
+def get_patient_search(request, name, gender):
+    """搜索模板
+        注意：省份需从MsgCode里面搜索关联模板
+
+    """
+    object_list = []
+    if not gender:
+        if name:
+            object_list = Patient.objects.filter(name__icontains=name).order_by('-id')
+        else:
+            object_list = Patient.objects.all().order_by('-id')
+    else:
+        if name:
+            object_list = Patient.objects.filter(name__icontains=name,gender=gender).order_by('-id')
+        else:
+            object_list = Patient.objects.filter(gender=gender).order_by('-id')
+
+    if object_list:
+        total_rows = object_list.count()
+    else:
+        total_rows = 0
+    return get_page_obj(request, object_list, total_rows), total_rows
+        
 @login_required
 def list_history(request):
     return HttpResponse('history')

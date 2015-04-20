@@ -12,6 +12,8 @@ urlpatterns = patterns('mgr.views',
                        url(r'^bcates[/]?$', login_required(BcateView.as_view()), name='list_bcate'),
                        url(r'^histories/(?P<uid>\d+)[/]?$', login_required(BHistoryView.as_view()), name='list_history'),
                        
+                       url(r'^searchpatient[/]?$', search_patient, name='search_patient'),
+                       
                        url(r'^addbcate[/]?/',login_required(BcateCreate.as_view()),name='add_bcate'),
                        url(r'^addbtype[/]?/',login_required(BtypeCreate.as_view()),name='add_btype'),
                        url(r'^addpatient[/]?/',login_required(PatientCreate.as_view()),name='add_patient'),

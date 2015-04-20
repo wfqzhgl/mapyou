@@ -25,12 +25,25 @@ $(document).ready(function(){
 
 
 {% block content%}
-    
-    <div class="ym-fbox-button">
-    	<input type="button" class="ym-button" value="新增" onclick="javascript:location.href='/bingli/addpatient/'" />
-    </div>
-    
-    <table id="table_btype_list" style="width:100%"> 
+
+<div>
+	<form id="id_search_patient_form">
+         {% csrf_token %}
+         <input type="button" class="ym-button" value="新增" onclick="javascript:location.href='/bingli/addpatient/'" />
+         &nbsp;&nbsp;&nbsp;
+        姓名：<input name="search_patient_name" type="text" style="width: 100px;height:23px;">
+        性别：<select name="search_patient_gender" id="search_patient_gender">
+                <option value="">全部</option>
+                <option value="0">男</option>
+                <option value="1">女</option>
+            </select>
+
+        <input type="button" value="搜索" onclick="do_patient_search()">
+     </form>
+</div>
+
+<div id="div_table_patient_list">
+    <table id="table_patient_list" style="width:100%"> 
 	    <thead> 
 	    <tr> 
 	        <th style="text-align:left;">姓名</th> 
@@ -48,8 +61,8 @@ $(document).ready(function(){
 	        <td>{{ object.age }}</td> 
 	        <td>{{ object.phone }}</td> 
 	        <td>
-	        	<a target="_blank" href="/bingli/modpatient/{{object.id}}/">查看/修改 </a>
-	        	<a target="_blank" href="/bingli/histories/{{object.id}}/">病历 </a>
+	        	<a href="/bingli/modpatient/{{object.id}}/">查看/修改 </a>
+	        	<a target="_blank" href="/bingli/histories/{{object.id}}/">查看病历 </a>
 	        </td> 
 	        
 	        
@@ -90,4 +103,5 @@ $(document).ready(function(){
 		       	{%endfor%}
 	       	</select>
 	  	</div>
+</div>
 {% endblock %}
