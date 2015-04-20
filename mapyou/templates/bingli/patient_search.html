@@ -1,0 +1,29 @@
+ <div style="color: red;margin-left:300px;margin-top: 5px;font-size: 0.8em;">总计:{{total_rows}}条</div>
+  <table id="table_btype_list" style="width:100%"> 
+	    <thead> 
+	    <tr> 
+	        <th style="text-align:left;">姓名</th> 
+	        <th style="text-align:left;">性别</th>
+	        <th style="text-align:left;">年龄</th>
+	        <th style="text-align:left;">电话</th>
+	        <th style="text-align:left;">操作</th> 
+	    </tr> 
+	    </thead> 
+	    <tbody> 
+	    {% for object in page_obj.object_list %}
+	    <tr> 
+	        <td>{{ object.name }}</td>
+	        <td>{{ object.get_gender_display }}</td>
+	        <td>{{ object.age }}</td> 
+	        <td>{{ object.phone }}</td> 
+	        <td>
+	        	<a href="/bingli/modpatient/{{object.id}}/">查看/修改 </a>
+	        	<a target="_blank" href="/bingli/histories/{{object.id}}/">查看病历 </a>
+	        </td> 
+	        
+	        
+	    </tr> 
+	    {% endfor %}
+	    </tbody> 
+    </table>  
+    
